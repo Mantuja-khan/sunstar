@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 
 const categories = [
   {
@@ -52,8 +52,7 @@ export default function Products() {
               </div>
 
               <Link
-                to="/products"
-                search={{ category: c.title }}
+                to={`/products?category=${encodeURIComponent(c.title)}`}
                 className="mt-auto w-full inline-flex items-center justify-center gap-1.5 rounded-md bg-primary py-2.5 text-xs font-bold uppercase tracking-wider text-primary-foreground transition hover:bg-primary-dark"
               >
                 View More <ArrowRight className="h-4 w-4" />

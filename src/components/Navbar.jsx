@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronDown, Search, ShoppingCart, Menu, X, Trash2, CheckCircle } from "lucide-react";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { ALL_PRODUCTS } from "@/data";
 
@@ -96,10 +96,7 @@ export default function Navbar() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (query.trim()) {
-      navigate({
-        to: "/products",
-        search: { q: query.trim() },
-      });
+      navigate(`/products?q=${encodeURIComponent(query.trim())}`);
       setSearchOpen(false);
     }
   };
@@ -175,8 +172,7 @@ export default function Navbar() {
                     {liveSearchResults.map((p) => (
                       <li key={p.id} className="flex items-center justify-between gap-3 py-2.5 first:pt-0 last:pb-0">
                         <Link
-                          to="/products"
-                          search={{ q: p.name }}
+                          to={`/products?q=${encodeURIComponent(p.name)}`}
                           onClick={() => setQuery("")}
                           className="flex items-center gap-2.5 hover:opacity-85 transition text-left flex-1"
                         >
@@ -386,8 +382,7 @@ export default function Navbar() {
                       {item.children.map((c) => (
                         <li key={c.name}>
                           <Link
-                            to={c.href}
-                            search={c.search}
+                            to={c.search ? `${c.href}?${new URLSearchParams(c.search).toString()}` : c.href}
                             className="block px-4 py-2 text-[13px] font-semibold hover:bg-primary/10 hover:text-primary"
                           >
                             {c.name}
@@ -433,8 +428,7 @@ export default function Navbar() {
                         {item.children?.map((c) => (
                           <li key={c.name}>
                             <Link
-                              to={c.href}
-                              search={c.search}
+                              to={c.search ? `${c.href}?${new URLSearchParams(c.search).toString()}` : c.href}
                               onClick={() => setMobileOpen(false)}
                               className="block py-1 text-[13px] text-primary-glow"
                             >
