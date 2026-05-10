@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-topbar: var(--topbar);
+  --color-topbar-foreground: var(--topbar-foreground);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.985 0.01 80);
+  --foreground: oklch(0.22 0.03 50);
+
+  /* Brand palette — #E8631C (Sun Start Packers Orange) */
+  --primary: oklch(0.61 0.22 45);          /* #E8631C vibrant orange */
+  --primary-foreground: oklch(1 0 0);
+  --primary-glow: oklch(0.81 0.16 65);     /* lighter golden-orange */
+  --primary-dark: oklch(0.32 0.12 35);     /* deep warm bronze/dark amber */
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 45);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 45);
+
+  --secondary: oklch(0.97 0.015 55);
+  --secondary-foreground: oklch(0.25 0.06 45);
+  --muted: oklch(0.96 0.01 55);
+  --muted-foreground: oklch(0.45 0.02 45);
+  --accent: oklch(0.72 0.18 45);
+  --accent-foreground: oklch(0.18 0.02 45);
+
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.9 0.01 55);
+  --input: oklch(0.9 0.01 55);
+  --ring: oklch(0.61 0.18 45);
+
+  --topbar: oklch(0.32 0.12 35);
+  --topbar-foreground: oklch(1 0 0);
+
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  --gradient-dark: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  --shadow-elegant: 0 10px 30px -10px color-mix(in oklab, var(--primary-dark) 35%, transparent);
+  --shadow-card: 0 4px 18px -6px color-mix(in oklab, var(--primary-dark) 18%, transparent);
+}
+
+.dark {
+  --background: oklch(0.15 0.02 160);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.2 0.03 160);
+  --card-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.65 0.2 145);
+  --primary-foreground: oklch(0.1 0.02 160);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .bg-gradient-dark { background-image: var(--gradient-dark); }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .clip-slant-r { clip-path: polygon(0 0, 100% 0, 92% 100%, 0% 100%); }
+  .clip-slant-l { clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%); }
+}
